@@ -8,6 +8,7 @@ import {setTextFilter, sortByAmount} from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
+import 'react-dates/lib/css/_datepicker.css';
 import * as serviceWorker from './serviceWorker';
 
 const store = configureStore();
