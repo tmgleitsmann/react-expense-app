@@ -6,7 +6,7 @@ import { addExpense } from '../actions/expenses';
 
 const ExpenseModel = require('../models/expenses');
 
-const writeToDB = ({description}, {amount}, {createdAt}, {note}) => {
+const writeToDB = ({description}, {amount}, {createdAt}, {note}) => ({
     let expense = new ExpenseModel({
         description,
         amount,
@@ -19,7 +19,7 @@ const writeToDB = ({description}, {amount}, {createdAt}, {note}) => {
     }).catch(err => {
         console.error(err)
     })
-};  
+});  
 
 const AddExpensePage = (props) => (
     <div>
