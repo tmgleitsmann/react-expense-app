@@ -16,14 +16,10 @@ export const addExpense = ({ description='', note='', amount = 0, createdAt = ti
 export const removeExpense = ({ id } = {}) => ({
     type:'REMOVE_EXPENSE',
     id
-}
-//write to the mongodb
-);
+});
 
 export const editExpense = (id, updates) => ({
     type:'EDIT_EXPENSE',
     id,
     updates
-}
-//write to the mongodb
-);
+});

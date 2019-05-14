@@ -6,7 +6,6 @@ import 'react-dates/lib/css/_datepicker.css';
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
 
 
-
 class ExpenseListFilters extends React.Component {
     constructor(props){
         super(props);
@@ -14,9 +13,7 @@ class ExpenseListFilters extends React.Component {
         focusedInput:null,
         };
     }
-    // state = {
-    //     calendarFocused:null,
-    // };
+
     onDatesChange = ({startDate, endDate}) => {
         this.props.dispatch(setStartDate(startDate));
         this.props.dispatch(setEndDate(endDate));
