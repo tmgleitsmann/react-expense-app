@@ -1,13 +1,9 @@
 import React, { Component} from 'react';
 
 
-class Homepage extends Component {
-  render(){
-    return (
-        <div>
-            <p>This should be the homepage component</p>
-        </div>
-      );
-  }
-}
+const Homepage = () => (
+    <div>
+        <button>Login</button>
+    </div>
+    );
 export default Homepage;
