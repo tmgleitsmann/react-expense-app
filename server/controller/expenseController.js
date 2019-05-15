@@ -3,16 +3,15 @@ Expense = require('../models/expenses');
 exports.index = function(req, res){
     Expense.find({}, function(err, expenses){
         if(err){
+            console.log(err);
+        }
+        else{
             res.json({
-                status:'error',
-                message:err
+                status:'success',
+                message:'Expense retrieved successfully',
+                data:expenses
             });
         }
-        res.json({
-            status:'success',
-            message:'Expense retrieved successfully',
-            data:expenses
-        });
     });
 };
 
@@ -22,23 +21,25 @@ exports.new = function(req, res){
     expense.id = req.body.id;
     expense.amount = req.body.amount;
     expense.description = req.body.description;
-    expense.createdAt = req.body.description;
+    expense.createdAt = req.body.createdAt;
     expense.note = req.body.note;
-
+    //console.log(expense);
     expense.save(function(err){
         if(err)
-            res.json(err);
-        res.json({
-            message:'new expense created',
-            data:expense
-        });
+            console.log(err);
+        else{
+            res.json({
+                message:'new expense created',
+                data:expense
+            });
+        }
     });
 };
 
 exports.view = function(req, res){
-    Expense.findById(req.params.id, function(err, expense){
+    Expense.findOne({id:req.params.id}, function(err, expense){
         if(err)
-            res.send(err);
+            cosole.log(err);
         res.json({
             message:'expense details loading..',
             data:expense
@@ -47,7 +48,7 @@ exports.view = function(req, res){
 };
 
 exports.update = function(req, res){
-    Expense.findById(req.params.id, function(err, expense){
+    Expense.findOne({id:req.params.id}, function(err, expense){
         if(err)
             res.send(err);
 
@@ -58,7 +59,7 @@ exports.update = function(req, res){
 
         expense.save(function(err){
             if(err)
-                res.json(err);
+                console.log(err);
             res.json({
                 message:'expense info updated',
                 data:expense
@@ -68,11 +69,11 @@ exports.update = function(req, res){
 };
 
 exports.delete = function(req, res){
-    Expense.remove({
+    Expense.deleteOne({
         id:req.params.id
     }, function(err, expense){
         if(err)
-            res.send(err);
+            console.log(err);
         res.json({
             status:'success',
             message:'expense removed'

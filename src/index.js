@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
-import {addExpense} from './actions/expenses';
+import {startSetExpenses} from './actions/expenses';
 import {setTextFilter, sortByAmount} from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
@@ -22,7 +22,10 @@ const jsx = (
 );
 
 
+ReactDOM.render(<p>loading...</p>, document.getElementById('root'));
 
-ReactDOM.render(jsx, document.getElementById('root'));
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('root'));
+});
 
 serviceWorker.unregister();
