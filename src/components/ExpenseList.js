@@ -16,7 +16,7 @@ const ExpenseList = (props) => {
 }
 
 export default connect((state) => {
-  return{
-    expenses:selectExpenses(state.expenses, state.filters)
-  };
+    return{
+        expenses:selectExpenses(state.expenses, state.filters)
+    };
 })(ExpenseList);

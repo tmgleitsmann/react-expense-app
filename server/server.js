@@ -5,12 +5,16 @@ const bodyParser = require('body-parser');
 const apiRoutes = require("./routes/api-routes")
 const cors = require('cors');
 
+//client id
+//950945190745-11ou34qgm5l4d17mivihjgms2e8pq150.apps.googleusercontent.com
+//client secret
+//LYCon115kzHJGKj115C4Vcip
+
 //connection to server
 const app = express();
 
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
-console.log(port);
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,6 +38,7 @@ app.listen(port, () => {
 mongoose.connect('mongodb+srv://tmgleitsmann:tmgleitsmann@cluster0-juaqw.mongodb.net/expense-app?retryWrites=true', { useNewUrlParser: true });
 mongoose.connection.once('open', () => console.log('mongoose connection successful'))
     .on('error', (error) => {
+        console.log('we ran into a problem opening mongo');
         console.warn('Error', error);
 })
 

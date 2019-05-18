@@ -1,4 +1,5 @@
-Expense = require('../models/expenses');
+const Expense = require('../models/expenses');
+
 
 exports.index = function(req, res){
     Expense.find({}, function(err, expenses){
@@ -23,6 +24,8 @@ exports.new = function(req, res){
     expense.description = req.body.description;
     expense.createdAt = req.body.createdAt;
     expense.note = req.body.note;
+    //grab mongoose user
+    
     //console.log(expense);
     expense.save(function(err){
         if(err)

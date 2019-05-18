@@ -1,8 +1,8 @@
 import uuid from 'uuid';
 import timestamp from 'time-stamp';
 import axios from 'axios';
-//const apiUrl = 'http://localhost:3000/api';
-const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
+const apiUrl = 'http://localhost:3000/api';
+//const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
 
 //add expense
 export const addExpense = (expense) =>{
@@ -16,6 +16,7 @@ export const startAddExpense = (expenseData = {}) => {
     return (dispatch) => {
         const {id = uuid(), description='', note='', amount = 0, createdAt = timestamp.utc('YYYY/MM/DD:mm:ss')} = expenseData;
         const expense = {id, description, note, amount, createdAt};
+        
         return axios
         .post(`${apiUrl}`, {...expense})
         .then(() => { dispatch(addExpense({...expense}));})
