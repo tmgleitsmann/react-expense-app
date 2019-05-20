@@ -18,7 +18,7 @@ const UserSchema = new Schema({
             type:String,
         },
         expenses:{
-            type:[{}]
+            type:[]
         }
     },
     google:{
@@ -28,6 +28,9 @@ const UserSchema = new Schema({
         email:{
             type:String,
             lowercase:true
+        },
+        expenses:{
+            type:[]
         }
     },
     facebook:{
@@ -37,6 +40,9 @@ const UserSchema = new Schema({
         email:{
             type:String,
             lowercase:true
+        },
+        expenses:{
+            type:[]
         }
     },
 });

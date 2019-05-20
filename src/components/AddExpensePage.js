@@ -6,7 +6,7 @@ import { startAddExpense } from '../actions/expenses';
 
 export class AddExpensePage extends React.Component{
     onSubmit = (expense) => {
-        this.props.startAddExpense(expense);
+        this.props.startAddExpense(expense, this.props.method, this.props.email);
         this.props.history.push('/dashboard');
     };
     render(){
@@ -21,8 +21,15 @@ export class AddExpensePage extends React.Component{
     }
 }
 
+const mapStateToProps = (state, props) => {
+    return {
+        email: state.users.email,
+        method: state.users.method
+    };
+};
+
 const mapDispatchToProps = (dispatch) => ({
-    startAddExpense: (expense) => dispatch(startAddExpense(expense))
+    startAddExpense: (expense, initMethod, initEmail) => dispatch(startAddExpense(expense, initMethod, initEmail))
 });
 
-export default connect(undefined, mapDispatchToProps)(AddExpensePage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddExpensePage);

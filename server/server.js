@@ -12,11 +12,10 @@ const cors = require('cors');
 
 //connection to server
 const app = express();
+app.use(cors());
 
 const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
-
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 //sends path of our web app for application use.

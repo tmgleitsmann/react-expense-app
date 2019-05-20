@@ -15,12 +15,4 @@ const ExpenseDashboardPage = () => {
 };
 
 
-// const mapStateToProps = (state, props) => {
-//     console.log(state.users[0].email);
-//     return {
-//         state.users[0].email;
-//     };
-// };
-
 export default ExpenseDashboardPage;
-//export default connect(mapStateToProps)(ExpenseDashboardPage);

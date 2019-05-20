@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
-//import { reduxForm, Field } from 'redux-form';
+//import { compose } from 'redux';
 import GoogleLogin from 'react-google-login';
-//import FacebookLogin from 'react-facebook-login';
-
-//import whatever action you need here
-
+import {clearExpenses} from '../actions/expenses';
+import {signUp, oauthGoogle} from '../actions/users';
 
 
 
@@ -14,9 +11,11 @@ export class SignUp extends React.Component{
 
     constructor(props){
         super(props);
+        //this.onSubmit = this.onSubmit.bind(this);
         this.state = {
             email:'',
-            password:''
+            password:'',
+            error:''
         };
     }
 
@@ -35,34 +34,84 @@ export class SignUp extends React.Component{
         });
     }
 
-    onSubmit = (event) => {
+    async onSubmit(event){
         event.preventDefault();
-        //const user = this.state;
-        const user = {
+        const formData = {
             email:this.state.email,
             password:this.state.password,
             expenses:[]
         };
-        console.log(user);
-        //we need to validate that the email is valid and the password is ok to use
-        //this.props.startAddUser(user);
-        this.props.history.push('/dashboard');
+        await this.props.signUp(formData);
+        //console.log(this.props);
+        if(!this.props.error.length){
+            await this.props.clearExpenses();
+            this.props.history.push('/dashboard');
+        }
     }
 
+    async responseGoogle(res){
+        //console.log('responseGoogle', res);
+        await this.props.oauthGoogle(res.accessToken);
+        //console.log(this.props);
+        if(!this.props.error.length){
+            await this.props.clearExpenses();
+            await this.props.startSetExpenses('google', res.profileObj.email);
+            this.props.history.push('/dashboard');
+        }
+    }
 
 
     render(){
         return(
             <div>
                 <form onSubmit={this.onSubmit.bind(this)}>
-                    <input name="email" onChange={this.onEmailChange.bind(this)} value={this.state.email} type="text" placeholder="JohnDoe@gmail.com"/>
-                    <input name="password" onChange={this.onPasswordChange.bind(this)} value={this.state.password} type="password" placeholder="password"/>
-                    <button>Sign Up!</button>
+                    <input 
+                        name="email" 
+                        type="email" 
+                        placeholder="example@example.com" 
+                        label="Enter Your Email" 
+                        id="email"
+                        onChange = {this.onEmailChange.bind(this)}/>
+
+                        <input 
+                        name="password" 
+                        type="password"
+                        placeholder="yoursecretpassword" 
+                        label="Enter Your Password" 
+                        id="password"
+                        onChange = {this.onPasswordChange.bind(this)}/>
+                    <button type="submit">Sign Up!</button>
                 </form>
+                <div>
+                    <h2>Or Sign Up using third-party services</h2>
+                    <GoogleLogin
+                        clientId="950945190745-6mr60c33s1s53gein22n30a89ssdgsot.apps.googleusercontent.com"
+                        buttonText="Google"
+                        onSuccess={this.responseGoogle.bind(this)}
+                        onFailure={this.responseGoogle.bind(this)}
+                        className = "google-button"
+                     />
+                    <button className="google-button">Google</button>
+                </div>
+                {this.props.error ? <div>{this.props.error}</div> : null}
             </div>
-        )
+        );
     }
 }
 
+const mapStateToProps = state => ({
+    error:state.users.error,
+    isAuth:state.users.isAuthenticated
+});
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        signUp: (user) => dispatch(signUp(user)),
+        oauthGoogle: (user) => dispatch(oauthGoogle(user)),
+        clearExpenses:()=>dispatch(clearExpenses()),
+        startSetExpenses: (initMethod, initEmail)=>dispatch(startSetExpenses(initMethod, initEmail))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+

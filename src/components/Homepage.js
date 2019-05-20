@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
-
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Homepage extends React.Component{
     constructor(props){
@@ -12,15 +13,27 @@ class Homepage extends React.Component{
     }
 
     render(){
+        const redir = this.props.isAuth;
         return(
             <div>
-               <button name="sign-up" onClick={this.changeRoute.bind(this)}>Sign Up</button>
-               <button name="sign-in" onClick={this.changeRoute.bind(this)}>Sign In</button>
-            </div>
+            { !redir ? 
+                 <div>
+                    <button name="sign-up" onClick={this.changeRoute.bind(this)}>Sign Up</button>
+                    <button name="sign-in" onClick={this.changeRoute.bind(this)}>Sign In</button>
+                </div>
+                : 
+                <Redirect to='/dashboard'/>
+            }
+           </div>
         );
     }
 }
 
 
 
-export default Homepage;
+const mapStateToProps = state => ({
+    isAuth:state.users.isAuthenticated
+});
+
+
+export default connect(mapStateToProps)(Homepage);

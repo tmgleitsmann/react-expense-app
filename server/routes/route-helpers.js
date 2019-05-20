@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 module.exports = {
     validateBody:(schema) => {
         return (req, res, next) => {
+            console.log('validated req.body', req.body);
             const result = Joi.validate(req.body, schema);
+            console.log('results', result);
             if(result.error){
                 return res.status(400).json(result.error);
             }
@@ -22,7 +24,8 @@ module.exports = {
     schemas:{
         AuthSchema:Joi.object().keys({
             email:Joi.string().email().required(),
-            password:Joi.string().required()
+            password:Joi.string().required(),
+            expenses:Joi.array().items(Joi.object())
         })
     }
 }

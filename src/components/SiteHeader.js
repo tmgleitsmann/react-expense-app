@@ -1,16 +1,58 @@
 import React, { Component} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {signOut} from '../actions/users';
+import {clearExpenses} from '../actions/expenses';
 
-
-function SiteHeader(props){
-    return(
-        <header className="testing">
-            <h1>Some Header Goes Here </h1>
-            <NavLink to="/" exact={true} activeClassName="is-active">Home</NavLink>
-            <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
-            <NavLink to="/about" activeClassName="is-active">About Me</NavLink>
-        </header>
-    );
+class SiteHeader extends Component{
+    constructor(props){
+        super(props);
+    }
+    async internalSignOut(e){
+        e.preventDefault();
+        await this.props.clearExpenses();
+        await this.props.signOut();
+    }
+    render(){
+        return(
+            <div>
+                <ul>
+                    <li>
+                        <NavLink to="/" exact={true} activeClassName="is-active">Home</NavLink>
+                        <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
+                        <NavLink to="/about" activeClassName="is-active">About Me</NavLink>
+                    </li>
+                </ul>
+                <ul>
+                    {!this.props.isAuth ? 
+                        <div>
+                        <li>
+                            <NavLink to="/sign-up">Sign Up</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/sign-in">Sign In</NavLink>
+                        </li>
+                        </div>
+                        :
+                        <li>
+                            <NavLink to='/sign-in' onClick={this.internalSignOut.bind(this)}>Sign Out</NavLink>
+                        </li>
+                    }
+                </ul>
+            </div>
+        );
+    }
 }
 
-export default SiteHeader;
+const mapStateToProps = state => ({
+    isAuth:state.users.isAuthenticated
+});
+
+const mapDispatchToProps = dispatch => {
+    return{
+        signOut: () => dispatch(signOut()),
+        clearExpenses:()=>dispatch(clearExpenses())
+    };  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SiteHeader);

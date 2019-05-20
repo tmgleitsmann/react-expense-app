@@ -12,13 +12,24 @@ const passportConfig = require('../passport');
 //expense routes
 //tested and working
 router.route('/')
-    .get(ExpenseController.index)
+    .get(UserController.index)
+    //.get(ExpenseController.index)
     .post(ExpenseController.new);
 
-//tested and working
+router.route('/:method/:email')
+    .get(UserController.grabUser)
+    .post(UserController.new);
+
 router.route('/edit/:id')
     .put(ExpenseController.update)
     .delete(ExpenseController.delete);
+
+router.route('/edit/:id/:method/:email')
+    .put(UserController.modify);
+
+//tested and working
+router.route('/remove/:method/:email/:id')
+    .put(UserController.removeExpense)
 
 //exchanging email and password for token
 //tested and working
@@ -35,7 +46,7 @@ router.route('/secret')
     .get(passport.authenticate('jwt', { session: false }), UserController.secret);
 
 //tested and working
-router.route('/oauth/google') 
+router.route('/oauth-google') 
     .post(passport.authenticate('googleToken', {session:false}), UserController.googleOAuth);
 
 module.exports = router;
