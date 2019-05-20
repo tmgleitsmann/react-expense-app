@@ -3,9 +3,20 @@ html {
 }
 
 body {
+    color:$off-grey;
     font-family: Helvetica, Arial, sans-serif;
     font-size: $small-font;
+    line-height:1.6;
 }
+
+button {
+    cursor:pointer;
+}
+
+button:disabled {
+    cursor:default;
+}
+
 
 h1 {
     font-size: 3rem;

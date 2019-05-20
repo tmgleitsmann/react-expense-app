@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import SiteHeader from './SiteHeader';
 
 const EditExpensePage = (props) => {
     return (
         <div>
+            <SiteHeader />
             <ExpenseForm
                 expense = {props.expense}
                 onSubmit={(expense) => {

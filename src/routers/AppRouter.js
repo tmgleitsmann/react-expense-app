@@ -13,7 +13,7 @@ import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 const AppRouter = () => (
     <Router>
         <div>
-            <SiteHeader/>
+            
             <Switch>
                 <Route path="/" component={Homepage} exact={true}/>
                 <Route path="/sign-in" component={SignIn}/>
