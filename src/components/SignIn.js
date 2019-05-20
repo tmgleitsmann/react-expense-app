@@ -39,7 +39,7 @@ export class SignIn extends React.Component{
             expenses:[]
         };
         await this.props.signIn(formData);
-        console.log(this.props);
+        //console.log(this.props);
         if(!this.props.error.length){
             this.props.history.push('/dashboard');
         }
@@ -48,8 +48,8 @@ export class SignIn extends React.Component{
     async responseGoogle(res){
         console.log(res.accessToken);
         await this.props.oauthGoogle(res.accessToken);
-        console.log('passed our oauth');
-        console.log(res.profileObj.email);
+        // console.log('passed our oauth');
+        // console.log(res.profileObj.email);
         if(!this.props.error.length){
             await this.props.clearExpenses();
             await this.props.startSetExpenses('google', res.profileObj.email);
