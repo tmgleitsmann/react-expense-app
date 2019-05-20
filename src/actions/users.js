@@ -95,7 +95,7 @@ export const oauthGoogle = data => {
             localStorage.setItem('METHOD', res.data.method);
 
         }catch(err){
-            //console.log('err', err);
+            console.log('err', err);
         }
     };
 }

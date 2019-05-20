@@ -5,10 +5,6 @@ const bodyParser = require('body-parser');
 const apiRoutes = require("./routes/api-routes")
 const cors = require('cors');
 
-//client id
-//950945190745-11ou34qgm5l4d17mivihjgms2e8pq150.apps.googleusercontent.com
-//client secret
-//LYCon115kzHJGKj115C4Vcip
 
 //connection to server
 const app = express();
