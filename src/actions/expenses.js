@@ -60,7 +60,9 @@ export const startRemoveExpense = ({id, method, email} = {}) => {
         }
     }
     else{
-        dispatch(removeExpense({id}));
+        return(dispatch)=>{
+            dispatch(removeExpense({id}));
+        }
     }
 };
 

@@ -88,7 +88,6 @@ export class SignIn extends React.Component{
                         onFailure={this.responseGoogle.bind(this)}
                         className = "google-button"
                      />
-                    <button className="google-button">Google</button>
                 </div>
                 {this.props.error ? <div>{this.props.error}</div> : null}
             </div>
