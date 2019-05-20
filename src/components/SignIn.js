@@ -46,7 +46,7 @@ export class SignIn extends React.Component{
     }
     
     async responseGoogle(res){
-        console.log(res.accessToken);
+        //console.log(res.accessToken);
         await this.props.oauthGoogle(res.accessToken);
         // console.log('passed our oauth');
         // console.log(res.profileObj.email);

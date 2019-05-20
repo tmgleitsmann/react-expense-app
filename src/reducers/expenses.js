@@ -21,7 +21,6 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
         case 'SET_EXPENSES':
             return action.expenses;
         case 'CLEAR_EXPENSES':
-            console.log('inside clear expenses');
             return [];
         default:
             return state;
