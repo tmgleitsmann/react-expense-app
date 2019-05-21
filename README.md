@@ -38,13 +38,13 @@ This may seem like overkill for such a simple app. Allow me to dissect why each 
 
 Webpack is an asset bundler that allows us to execute a single javascript file (bundle.js) that includes all of the app dependencies, styles, and components. Rather than having an index.html that has to load multiple scripts and styles, it only has to load the bundle. 
 
-Redux is a simple way to store the state of the application while keeping all the components loosely coupled. By using redux, I didn't have to focus on passing properties around from component to component. Also, this allows the app to continue displaying information to the user even when connection is lost. Instead of making multiple queries to the database to retrieve expenses, the application only needs to make one and store the results in the redux "store". 
+Redux is a simple way to store the state of the application while keeping all the components loosely coupled. By using redux, the application doesn't have to pass properties around from component to component. Redux also allows the app to continue displaying information to the user even when connection is lost. Instead of making multiple queries to the database to retrieve expenses, the application only needs to make one and store the results in the redux "store". 
 
 Node.js is how I chose to deploy the server-side of my application, how I chose to define my API Endpoints and how I chose to establish my MongoDB connection. Without the Node, user-specific data would not persist in this application.
 
 Google OAuth allows for an easy and secure way to sign-up for an expense account. It validates access tokens (JWT) rather than emails & passwords to provide safe and secure commuinication to the application. 
 
-MongoDB is the database service I chose to house all the application users and their expenses. I utilize Mongoose middleware because it allows for easy to understand schema validation/authentication and database queries. Upon logging in, the expenses are pulled from the particular user from the database and stored in the redux store.
+MongoDB is the database service I chose to house all the application users and their expenses. I picked Mongoose because it allows for easy to understand schema validation/authentication and database queries. Upon logging in, the expenses are pulled from the particular user from the database and stored in the redux store.
 
 Bcrypt was something I debated on even listing here since it's such a tiny module that does not require a lot of code to be written for it. However the application does house users and users do have passwords. Bcrypt allows the application to hash a password using a salt so that if there was ever the predicament that the MongoDB was no longer secure, the accounts would still be safe. 
 
