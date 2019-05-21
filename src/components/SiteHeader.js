@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {signOut} from '../actions/users';
 import {clearExpenses} from '../actions/expenses';
@@ -13,32 +13,27 @@ class SiteHeader extends Component{
         await this.props.clearExpenses();
         await this.props.signOut();
     }
+
     render(){
         return(
             <div>
-                <ul>
-                    <li>
-                        <NavLink to="/" exact={true} activeClassName="is-active">Home</NavLink>
-                        <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
-                        <NavLink to="/about" activeClassName="is-active">About Me</NavLink>
-                    </li>
-                </ul>
-                <ul>
-                    {!this.props.isAuth ? 
-                        <div>
-                        <li>
-                            <NavLink to="/sign-up">Sign Up</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/sign-in">Sign In</NavLink>
-                        </li>
-                        </div>
-                        :
-                        <li>
-                            <NavLink to='/sign-in' onClick={this.internalSignOut.bind(this)}>Sign Out</NavLink>
-                        </li>
-                    }
-                </ul>
+                <header className="header">
+                <div className="content-container">
+                <div className="header__content">
+                <Link className="header__title" to="/dashboard"><h1>Expenses App</h1></Link>
+                {!this.props.isAuth ? 
+                    <div>
+                    <button className="button" name="/sign-up"><Link className="link__nav" to="/sign-up">Sign Up</Link></button>
+                    <button className="button" name="/sign-in"><Link className="link__nav" to="/sign-in">Sign Up</Link></button>
+                    </div>
+                    :
+                    <div>
+                    <button className="button" onClick={this.internalSignOut}>Sign Out</button>
+                    </div>
+                }
+                </div>
+                </div>
+                </header>
             </div>
         );
     }

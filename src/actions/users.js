@@ -1,7 +1,7 @@
 import axios from 'axios';
 //import store from '../store/configureStore';
-//const apiUrl = 'http://localhost:3000/api';
-const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
+const apiUrl = 'http://localhost:3000/api';
+//const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
 
 
 export const signUp = data => {

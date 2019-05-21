@@ -2,6 +2,20 @@
     background:$light-grey;
     border:none;
     padding:$xs-size;
+    display:inline-block;
     font-weight:300;
+    line-height:1;
     font-size:$small-font;
+    text-decoration:none;
+}
+
+.button--link{
+    background:fade-out(black, .65);
+    color:white;
+    font-weight:350;
+    border-radius:5px;
+}
+
+.button--secondary{
+    background:#ff6666;
 }

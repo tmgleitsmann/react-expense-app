@@ -11,9 +11,8 @@ import SignUp from '../components/SignUp';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 
 const AppRouter = () => (
+    <div>
     <Router>
-        <div>
-            
             <Switch>
                 <Route path="/" component={Homepage} exact={true}/>
                 <Route path="/sign-in" component={SignIn}/>
@@ -24,8 +23,8 @@ const AppRouter = () => (
                 <Route path="/about" component={About} />
                 <Route component={NotFound}/>  
             </Switch>
-        </div>
     </Router>
+    </div>
 );
 
 export default AppRouter;
