@@ -24,7 +24,7 @@ class SiteHeader extends Component{
                 {!this.props.isAuth ? 
                     <div>
                     <button className="button" name="/sign-up"><Link className="link__nav" to="/sign-up">Sign Up</Link></button>
-                    <button className="button" name="/sign-in"><Link className="link__nav" to="/sign-in">Sign Up</Link></button>
+                    <button className="button" name="/sign-in"><Link className="link__nav" to="/sign-in">Sign In</Link></button>
                     </div>
                     :
                     <div>
