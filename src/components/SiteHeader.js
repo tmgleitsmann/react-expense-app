@@ -28,7 +28,7 @@ class SiteHeader extends Component{
                     </div>
                     :
                     <div>
-                    <button className="button" onClick={this.internalSignOut}>Sign Out</button>
+                    <button className="button" onClick={this.internalSignOut.bind(this)}>Sign Out</button>
                     </div>
                 }
                 </div>
