@@ -49,8 +49,7 @@ MongoDB is the database service I chose to house all the application users and t
 Bcrypt was something I debated on even listing here since it's such a tiny module that does not require a lot of code to be written for it. However the application does house users and users do have passwords. Bcrypt allows the application to hash a password using a salt so that if there was ever the predicament that the MongoDB was no longer secure, the accounts would still be safe. 
 
 Passport is the module I used for validating users before returning their access_token & data to the front-end. What the server does, in essence, is exchange an email & password for a json web token (w/ oauth the application is given an google plus token. Passport uses particular "strategies" (ie. local or google oauth) to validate these tokens and respond to the front-end request with the desired user.
-*Email&Passsord --> Token --> Passport validates --> User that corresponds to token*
-*                                               |--> Null                          *
+(Email & Password are converted to a Token which is then validated by Passport which returns either the corresponding user or null)
 
 
 
