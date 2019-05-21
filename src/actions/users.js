@@ -1,17 +1,18 @@
 import axios from 'axios';
 const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
-
+//const apiUrl = 'http://localhost:3000/api';
 
 export const signUp = data => {
     return async dispatch => {
         try{
-            const res = await axios.post(`${apiUrl}/signup`, data);
+            const res = await axios.post(`${apiUrl}/sign-up`, data);
                 dispatch({
                     type:'AUTH_SIGNUP',
                     payload:res.data.token,
                     email:res.data.email,
                     method:res.data.method,
-                    expenses:res.data.data
+                    expenses:res.data.data,
+                    error:''
                 });
                 localStorage.setItem('JWT_TOKEN', res.data.token);
                 localStorage.setItem('EMAIL', res.data.email);
@@ -53,7 +54,8 @@ export const signIn = data => {
         payload: res.data.token,
         email: res.data.email,
         method:res.data.method,
-        expenses:res.data.data
+        expenses:res.data.data,
+        error:''
       });
       localStorage.setItem('JWT_TOKEN', res.data.token);
       localStorage.setItem('EMAIL', res.data.email);
@@ -79,9 +81,9 @@ export const oauthGoogle = data => {
                 payload:res.data.token,
                 email:res.data.email,
                 method:res.data.method,
-                expenses:res.data.data
+                expenses:res.data.data,
+                error:''
             });
-            //console.log('after post res', res);
             localStorage.setItem('JWT_TOKEN', res.data.token);
             localStorage.setItem('EMAIL', res.data.email);
             localStorage.setItem('METHOD', res.data.method);

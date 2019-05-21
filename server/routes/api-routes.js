@@ -32,12 +32,12 @@ router.route('/remove/:method/:email/:id')
 
 //exchanging email and password for token
 //tested and working
-router.route('/signup')
+router.route('/sign-up')
     .post(validateBody(schemas.AuthSchema), UserController.signUp);
 
 //exchanging email and password for token
 //tested and working
-router.route('/signin')
+router.route('/sign-in')
     .post(validateBody(schemas.AuthSchema), passport.authenticate('local', {session:false}), UserController.signIn);
 
 //holding token, want to access this route. Still need to Test

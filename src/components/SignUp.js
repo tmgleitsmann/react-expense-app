@@ -41,8 +41,9 @@ export class SignUp extends React.Component{
             expenses:[]
         };
         await this.props.signUp(formData);
-        if(!this.props.error.length){
+        if(!this.props.error){
             await this.props.clearExpenses();
+            await this.props.startSetExpenses('local', formData.email);
             this.props.history.push('/dashboard');
         }
     }

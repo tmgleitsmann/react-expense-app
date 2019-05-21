@@ -61,7 +61,6 @@ module.exports = {
     },
     googleOAuth: async (req, res, next) => {
         // Generate token
-        console.log('inside server oauth func');
         const googleUser = req.user;
         const token = signToken(req.user);
         res.cookie('access_token', token, {

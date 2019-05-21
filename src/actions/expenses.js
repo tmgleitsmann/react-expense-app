@@ -2,6 +2,7 @@ import uuid from 'uuid';
 import timestamp from 'time-stamp';
 import axios from 'axios';
 const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
+//const apiUrl = 'http://localhost:3000/api';
 
 //add expense
 export const addExpense = (expense) =>{

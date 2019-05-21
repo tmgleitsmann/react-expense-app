@@ -39,14 +39,17 @@ export class SignIn extends React.Component{
             expenses:[]
         };
         await this.props.signIn(formData);
-        if(!this.props.error.length){
+        if(!this.props.error){
+            await this.props.clearExpenses();
+            await this.props.startSetExpenses('local', formData.email);
             this.props.history.push('/dashboard');
         }
     }
     
     async responseGoogle(res){
         await this.props.oauthGoogle(res.accessToken);
-        if(!this.props.error.length){
+        //console.log(res.profileObj);
+        if(!this.props.error){
             await this.props.clearExpenses();
             await this.props.startSetExpenses('google', res.profileObj.email);
             this.props.history.push('/dashboard');
