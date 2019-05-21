@@ -80,18 +80,8 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
     passReqToCallback:true
 }, async (req, accessToken, refreshToken, profile, done) => {
     try{
-        //this should be the user
-        // console.log('request obj', req); 
-        // console.log('accessToken', accessToken);
-        // console.log('refreshToken', refreshToken);
-        // console.log('profile', profile);
-
-        //check if user exists in database
 
         if(req.user){
-            //we've already logged in. need to link account.
-            console.log(req.user);
-            //req.user.methods.push('google');
             req.user['google'] = {
                 id:profile.id,
                 email:profile.emails[0].value
@@ -110,7 +100,6 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
             exists = await User.findOne({ "local.email": profile.emails[0].value })
             if (exists) {
                 // We want to merge google's data with local auth
-                //exists.methods.push('google')
                 exists['google'] = {
                   id: profile.id,
                   email: profile.emails[0].value

@@ -11,7 +11,6 @@ export class SignUp extends React.Component{
 
     constructor(props){
         super(props);
-        //this.onSubmit = this.onSubmit.bind(this);
         this.state = {
             email:'',
             password:'',
@@ -42,7 +41,6 @@ export class SignUp extends React.Component{
             expenses:[]
         };
         await this.props.signUp(formData);
-        //console.log(this.props);
         if(!this.props.error.length){
             await this.props.clearExpenses();
             this.props.history.push('/dashboard');
@@ -50,9 +48,8 @@ export class SignUp extends React.Component{
     }
 
     async responseGoogle(res){
-        //console.log('responseGoogle', res);
-        await this.props.oauthGoogle(res.accessToken);
-        //console.log(this.props);
+
+        await this.props.oauthGoogle(res.accessToken); 
         if(!this.props.error.length){
             await this.props.clearExpenses();
             await this.props.startSetExpenses('google', res.profileObj.email);
@@ -63,8 +60,10 @@ export class SignUp extends React.Component{
 
     render(){
         return(
-            <div>
-                <form onSubmit={this.onSubmit.bind(this)}>
+            <div className="bg">
+            <div className="content-container">
+            <div className="sign-container">
+                <form className=""onSubmit={this.onSubmit.bind(this)}>
                     <input 
                         name="email" 
                         type="email" 
@@ -82,18 +81,22 @@ export class SignUp extends React.Component{
                         onChange = {this.onPasswordChange.bind(this)}/>
                     <button type="submit">Sign Up!</button>
                 </form>
-                <div>
-                    <h2>Or Sign Up using third-party services</h2>
+            </div>
+
+
+
+            <div className="sign-container">
+                <h2>Or Sign Up using third-party services</h2>
                     <GoogleLogin
                         clientId="950945190745-6mr60c33s1s53gein22n30a89ssdgsot.apps.googleusercontent.com"
                         buttonText="Google"
                         onSuccess={this.responseGoogle.bind(this)}
                         onFailure={this.responseGoogle.bind(this)}
-                        className = "google-button"
-                     />
-                    <button className="google-button">Google</button>
-                </div>
-                {this.props.error ? <div>{this.props.error}</div> : null}
+                        className = "google-button" />
+                    {this.props.error ? <div>{this.props.error}</div> : null}
+            </div>  
+
+            </div>
             </div>
         );
     }

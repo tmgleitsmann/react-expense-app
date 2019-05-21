@@ -8,7 +8,6 @@ class Homepage extends React.Component{
     }
 
     changeRoute = (event) =>{
-        console.log(event.target.name);
         this.props.history.push('/'+event.target.name);
     }
 

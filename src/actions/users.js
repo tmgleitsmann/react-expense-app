@@ -1,15 +1,11 @@
 import axios from 'axios';
-//import store from '../store/configureStore';
-//const apiUrl = 'http://localhost:3000/api';
 const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
 
 
 export const signUp = data => {
     return async dispatch => {
         try{
-            //console.log('data', data);
             const res = await axios.post(`${apiUrl}/signup`, data);
-            //console.log('res local', res.data.method);
                 dispatch({
                     type:'AUTH_SIGNUP',
                     payload:res.data.token,
@@ -20,7 +16,6 @@ export const signUp = data => {
                 localStorage.setItem('JWT_TOKEN', res.data.token);
                 localStorage.setItem('EMAIL', res.data.email);
                 localStorage.setItem('METHOD', res.data.method);
-                //console.log(res);
         }catch(err){
             dispatch({
                 type:'AUTH_ERROR',
@@ -32,7 +27,6 @@ export const signUp = data => {
 
 
 export const signOut = () => {
-  console.log('inside sign out');
   return dispatch => {
     localStorage.removeItem('JWT_TOKEN');
     localStorage.removeItem('EMAIL');
@@ -65,8 +59,6 @@ export const signIn = data => {
       localStorage.setItem('EMAIL', res.data.email);
       localStorage.setItem('METHOD', res.data.method);
       axios.defaults.headers.common['Authorization'] = res.data.token;
-      //dispatch to expenses action
-      //const expenses = await.get(`${apiUrl}/`)
 
     } catch(err) {
       dispatch({
@@ -78,7 +70,6 @@ export const signIn = data => {
 }
 
 export const oauthGoogle = data => {
-  //console.log('running oauth action', data);
     return async dispatch => {
         try{
             const res = await axios

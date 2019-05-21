@@ -1,8 +1,6 @@
 import uuid from 'uuid';
 import timestamp from 'time-stamp';
 import axios from 'axios';
-//import store from '../store/configureStore';
-//const apiUrl = 'http://localhost:3000/api';
 const apiUrl = 'https://gleitsmann-expense-app.herokuapp.com/api';
 
 //add expense
@@ -14,8 +12,6 @@ export const addExpense = (expense) =>{
 };
 
 export const startAddExpense = (expenseData = {}, initMethod='', initEmail='') => {
-    //console.log('initMethod', initMethod);
-    //console.log('initEmail', initEmail);
     const {id = uuid(), description='', note='', amount = 0, createdAt = timestamp.utc('YYYY/MM/DD:mm:ss')} = expenseData;
     const expense = {id, description, note, amount, createdAt};
 
@@ -44,12 +40,9 @@ export const removeExpense = ({ id } = {}) => {
         id
     };
 };
-//'/edit/:method/:email/:id'
+
 export const startRemoveExpense = ({id, method, email} = {}) => {
     if(id && method && email){
-        //console.log("id", id);
-        //console.log("method", method);
-        //console.log("email", email);
         return(dispatch)=>{
             return axios
             .put(`${apiUrl}/remove/${method}/${email}/${id}`)
@@ -100,12 +93,8 @@ export const setExpenses = (expenses) => {
 };
 
 export const startSetExpenses = (initMethod, initEmail) => {
-    //console.log('inside start expenses');
-    //console.log(initMethod, initEmail);
     if(initMethod && initEmail){
         return (dispatch) => {
-            //console.log('initial method in startsetexpenses', initMethod);
-            //console.log('initial email in startsetexpenses', initEmail);
             return axios
             .get(`${apiUrl}/${initMethod}/${initEmail}`)
             .then((req) => {
@@ -126,7 +115,6 @@ export const startSetExpenses = (initMethod, initEmail) => {
 };
 
 export const clearExpenses = () => {
-    console.log('clearing expenses');
     return{
         type:'CLEAR_EXPENSES'
     };

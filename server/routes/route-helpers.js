@@ -8,16 +8,13 @@ const mongoose = require('mongoose');
 module.exports = {
     validateBody:(schema) => {
         return (req, res, next) => {
-            console.log('validated req.body', req.body);
             const result = Joi.validate(req.body, schema);
-            console.log('results', result);
             if(result.error){
                 return res.status(400).json(result.error);
             }
             if(!req.value){req.value = {};}
             req.value['body'] = result.value;
             next();
-            //req.value.body
         }
     },
 

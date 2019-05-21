@@ -1,10 +1,9 @@
 const router = require('express').Router();
-
 const { validateBody, schemas } = require('./route-helpers');
+
 //import controllers
 const ExpenseController = require('../controller/expenseController');
 const UserController = require('../controller/userController');
-//import passport
 const passport = require('passport');
 const passportConfig = require('../passport');
 
@@ -13,12 +12,12 @@ const passportConfig = require('../passport');
 //tested and working
 router.route('/')
     .get(UserController.index)
-    //.get(ExpenseController.index)
     .post(ExpenseController.new);
 
 router.route('/:method/:email')
     .get(UserController.grabUser)
     .post(UserController.new);
+
 
 router.route('/edit/:id')
     .put(ExpenseController.update)

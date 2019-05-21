@@ -3,3 +3,24 @@
     padding: 0 $xs-size;
     max-width:130rem;
 }
+
+.sign-container{
+    margin: auto auto;
+    text-align:center;
+    width:60rem;
+    padding: $l-size $m-size;
+    align:center;
+    background:fade-out(black, .65);
+    color:$off-blue;
+
+}
+
+
+.bg{
+    background: url('/images/bg.jpg');
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    height:100vh;
+    width:100vw;
+}
