@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 //import { compose } from 'redux';
 import GoogleLogin from 'react-google-login';
-import {clearExpenses} from '../actions/expenses';
+import {clearExpenses, startSetExpenses} from '../actions/expenses';
 import {signUp, oauthGoogle} from '../actions/users';
 
 
