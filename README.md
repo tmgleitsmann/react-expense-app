@@ -1,5 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Before Executing!
+Enter your Google Client ID in SignUp.js & SignIn.js (/src/components) inside the <GoogleLogin /> Tag.
+Enter your Google Client ID & Google Client Secret key inside of Passport.js (/server) GooglePlusTokenStrategy.
+Enter your own mongo connection string inside of Server.js (/server).
+Npm Install all dependencies.
+
 ## Available Scripts
 
 In the project directory, you can run:
