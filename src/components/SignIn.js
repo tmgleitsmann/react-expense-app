@@ -87,7 +87,7 @@ export class SignIn extends React.Component{
             <div className="sign-container">
                 <h2>Or Sign In using third-party services</h2>
                     <GoogleLogin
-                        clientId="950945190745-6mr60c33s1s53gein22n30a89ssdgsot.apps.googleusercontent.com"
+                        clientId="YOUR GOOGLE CLIENT ID HERE"
                         buttonText="Google"
                         onSuccess={this.responseGoogle.bind(this)}
                         onFailure={this.responseGoogle.bind(this)}
