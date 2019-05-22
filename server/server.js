@@ -28,13 +28,12 @@ app.listen(port, () => {
 
 
 //connection to mongo
-//mongoose.connect('mongodb://localhost:27017/localExpense');
-
-mongoose.connect('mongodb+srv://tmgleitsmann:tmgleitsmann@cluster0-juaqw.mongodb.net/expense-app?retryWrites=true', { useNewUrlParser: true });
-mongoose.connection.once('open', () => console.log('mongoose connection successful'))
-    .on('error', (error) => {
-        console.log('we ran into a problem opening mongo');
-        console.warn('Error', error);
-})
+//Uncomment when you insert your mongo connection string
+// mongoose.connect('YOUR MONGO CONNECTION STRING HERE', { useNewUrlParser: true });
+// mongoose.connection.once('open', () => console.log('mongoose connection successful'))
+//     .on('error', (error) => {
+//         console.log('we ran into a problem opening mongo');
+//         console.warn('Error', error);
+// })
 
 mongoose.Promise = global.Promise; //overrides mongoose promise and uses js promise
