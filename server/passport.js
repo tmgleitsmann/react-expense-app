@@ -75,8 +75,8 @@ passport.use('local', new LocalStrategy({
 
 //Google OAUTH Strategy
 passport.use('googleToken', new GooglePlusTokenStrategy({
-    clientID:'950945190745-6mr60c33s1s53gein22n30a89ssdgsot.apps.googleusercontent.com',
-    clientSecret:'xCaFuXm0wJR3y6xVLgpc-9zO',
+    clientID:'YOUR GOOGLE CLIENT ID HERE',
+    clientSecret:'YOUR GOOGLE CLIENT SECRET HERE',
     passReqToCallback:true
 }, async (req, accessToken, refreshToken, profile, done) => {
     try{
